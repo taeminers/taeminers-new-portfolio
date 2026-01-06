@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -28,13 +28,7 @@ export default function RootLayout({
           outfit.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-        >
-          <SmoothScroll>{children}</SmoothScroll>
-        </ThemeProvider>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

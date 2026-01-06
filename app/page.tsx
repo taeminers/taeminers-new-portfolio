@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "motion/react";
-import { Header } from "@/components/layout/header";
+import { Header } from "@/components/layout/header/header";
 import { Dock } from "@/components/layout/dock";
 
 const textReveal: Variants = {
