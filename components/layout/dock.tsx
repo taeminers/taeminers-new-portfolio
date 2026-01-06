@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Home, Lightbulb, Mail, LayoutGrid, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/core/button";
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
@@ -22,7 +22,6 @@ export function Dock() {
       transition={{ type: "spring", damping: 25, stiffness: 260, mass: 0.8 }} // Snappy, organic spring
       className={cn(
         "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-col justify-end items-center overflow-hidden",
-        
         // High-Fidelity Liquid Glass Effect
         "backdrop-blur-3xl backdrop-saturate-[180%]",
         "bg-gradient-to-b from-white/30 to-white/10",
@@ -74,8 +73,8 @@ export function Dock() {
              <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-neutral-100 border border-white/50 shadow-inner" />
                 <div className="flex flex-col">
-                    <span className="text-xs font-bold uppercase text-neutral-800">Taemin Lee</span>
-                    <span className="text-[10px] text-neutral-500 uppercase tracking-widest">이태민</span>
+                    <span className="text-sm font-bold uppercase text-neutral-800">Kyle Lee</span>
+                    <span className="text-sm font-semibold text-neutral-500 uppercase tracking-widest">이태민</span>
                 </div>
              </div>
             

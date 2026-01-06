@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/core/button";
+import { MainCtaButton } from "@/components/ui/main-cta/main-cta-button";
 
 const INFO_ITEMS = [
   { label: "Role", value: "Design Engineer" },
@@ -10,7 +11,7 @@ const INFO_ITEMS = [
     label: "Status", 
     value: (
       <>
-        <span className="w-2 h-2 rounded-full bg-[#dd3aa1] animate-pulse" />
+        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
         Available
       </>
     ) 
@@ -33,9 +34,9 @@ export function Header() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-start justify-between px-6 py-6 md:px-12 pointer-events-none mix-blend-difference text-white"
+      className="fixed top-0 left-0 right-0 z-50 flex items-start justify-between px-6 py-6 md:px-12 pointer-events-none"
     >
-      <div className="flex items-start gap-8 md:gap-20 pointer-events-auto">
+      <div className="flex items-start gap-8 md:gap-20 pointer-events-auto text-neutral-900">
         {/* Desktop Layout - Static */}
         <div className="hidden md:flex items-start gap-20">
             <div className="flex flex-col gap-1">
@@ -52,7 +53,7 @@ export function Header() {
                 Status
             </span>
             <span className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#dd3aa1] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 Available
             </span>
             </div>
@@ -62,7 +63,7 @@ export function Header() {
                 Location
             </span>
             <span className="text-sm font-bold uppercase tracking-widest">
-                Seoul, KR
+                Seoul, KR 
             </span>
             </div>
         </div>
@@ -90,14 +91,7 @@ export function Header() {
       </div>
 
       {/* Right Side: Actions */}
-      <div className="flex items-center gap-4 pointer-events-auto">
-        <Button 
-            className="rounded-full bg-white text-black hover:bg-neutral-200"
-            size="default"
-        >
-            Let&apos;s Talk
-        </Button>
-      </div>
+     <MainCtaButton />
     </motion.header>
   );
 }
