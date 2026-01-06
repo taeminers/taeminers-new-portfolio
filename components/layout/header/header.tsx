@@ -93,7 +93,7 @@ export function Header() {
       <div className="flex items-center gap-4 pointer-events-auto">
         <Button 
             className="rounded-full bg-white text-black hover:bg-neutral-200"
-            size="sm"
+            size="default"
         >
             Let&apos;s Talk
         </Button>

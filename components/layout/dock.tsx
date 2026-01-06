@@ -19,71 +19,82 @@ export function Dock() {
   return (
     <motion.div
       layout
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ type: "spring", damping: 25, stiffness: 260, mass: 0.8 }} // Snappy, organic spring
       className={cn(
-        "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center overflow-hidden",
-        "bg-white/10 backdrop-blur-xl backdrop-saturate-150",
-        "border border-white/20",
-        "shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]", // Deep outer shadow
-        "outline outline-1 outline-white/30", // Extra rim light
+        "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-col justify-end items-center overflow-hidden",
         
+        // High-Fidelity Liquid Glass Effect
+        "backdrop-blur-3xl backdrop-saturate-[180%]",
+        "bg-gradient-to-b from-white/30 to-white/10",
+        "border border-white/40",
+        "shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]",
+        "ring-1 ring-white/30 ring-inset",
+
         "w-[90vw] max-w-[350px] rounded-3xl", 
-        isOpen ? "p-4" : "p-2"
+        "p-2"
       )}
+      style={{
+           // Setting a min-height ensures distinct 'closed' and 'open' states for the spring to animate between
+      }}
     >
-        <AnimatePresence>
-          
+        <AnimatePresence mode="popLayout">
             {isOpen && (
                 <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
+                    initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)", transition: { delay: 0.1, duration: 0.2 } }}
+                    exit={{ opacity: 0, y: 0, filter: "blur(4px)", transition: { duration: 0.15 } }}
                     className="flex flex-col gap-2 mb-4 w-full"
                 >
-                    {navItems.map((item) => (
+                    {navItems.map((item, i) => (
                         <Link key={item.name} href={item.href} passHref>
                             <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                className="flex items-center gap-4 p-3 rounded-xl hover:bg-black/5 transition-colors"
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -10, transition: { duration: 0.1 } }}
+                                transition={{ delay: 0.1 + (i * 0.05), type: "spring", stiffness: 300, damping: 20 }}
+                                className="flex items-center gap-4 p-3 rounded-xl hover:bg-black/5 transition-colors group"
                             >
-                                <div className="p-2 rounded-lg bg-white">
-                                     <item.icon className="w-5 h-5 text-neutral-500" />
+                                <div className="p-2 rounded-lg bg-white/50 group-hover:bg-white transition-colors shadow-sm">
+                                     <item.icon className="w-5 h-5 text-neutral-600 transition-colors" />
                                 </div>
-                                <span className="font-medium text-sm">{item.name}</span>
+                                <span className="font-medium text-sm text-neutral-800">{item.name}</span>
                             </motion.div>
                         </Link>
                     ))}
-                     <div className="w-full h-px bg-black/10 my-1" />
+                     <div className="w-full h-px bg-black/5 my-1" />
                 </motion.div>
             )}
         </AnimatePresence>
 
-        <div className="flex items-center justify-between w-full gap-4 px-2">
+
+        <motion.div 
+            layout="position" // Ensures this bar sticks to the bottom smoothly during expansion
+            className="flex items-center justify-between w-full gap-4 px-2"
+        >
              <div className="flex items-center gap-3">
-              
-                <div className="w-10 h-10 rounded-full bg-neutral-200" />
+                <div className="w-10 h-10 rounded-full bg-neutral-100 border border-white/50 shadow-inner" />
                 <div className="flex flex-col">
-                    <span className="text-xs font-bold uppercase">Menu</span>
-                    <span className="text-[10px] text-neutral-500 uppercase tracking-widest">Navigation</span>
+                    <span className="text-xs font-bold uppercase text-neutral-800">Taemin Lee</span>
+                    <span className="text-[10px] text-neutral-500 uppercase tracking-widest">이태민</span>
                 </div>
              </div>
             
             <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full w-12 h-12 hover:bg-black/5 ml-auto"
+                className="rounded-full w-12 h-12 hover:bg-white/20 ml-auto"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="wait" initial={false}>
                     {isOpen ? (
                         <motion.div
                             key="close"
                             initial={{ rotate: -90, opacity: 0 }}
                             animate={{ rotate: 0, opacity: 1 }}
                             exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                         >
-                            <X className="w-6 h-6" />
+                            <X className="w-6 h-6 text-neutral-800" />
                         </motion.div>
                     ) : (
                          <motion.div
@@ -91,13 +102,14 @@ export function Dock() {
                             initial={{ rotate: 90, opacity: 0 }}
                             animate={{ rotate: 0, opacity: 1 }}
                             exit={{ rotate: -90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                         >
-                            <Menu className="w-6 h-6" />
+                            <Menu className="w-6 h-6 text-neutral-800" />
                         </motion.div>
                     )}
                 </AnimatePresence>
             </Button>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
