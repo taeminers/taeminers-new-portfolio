@@ -1,65 +1,96 @@
-import Image from "next/image";
+"use client";
+
+import { motion, Variants } from "motion/react";
+import { Header } from "@/components/layout/header";
+import { Dock } from "@/components/layout/dock";
+
+const textReveal: Variants = {
+  hidden: { y: 100, opacity: 0 },
+  visible: (i: number) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: i * 0.1,
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-screen w-full overflow-hidden bg-background text-foreground selection:bg-primary/20 selection:text-primary">
+      <Header />
+      
+      {/* Glow Effects */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/5 blur-[120px] rounded-full" />
+      </div>
+
+      <section className="relative flex flex-col justify-center min-h-[100dvh] px-6 pt-32 pb-40 md:px-12">
+        <div className="max-w-[90rem] mx-auto w-full">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col font-heading font-bold tracking-tighter leading-[0.85]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {/* Massive Heading */}
+            <div className="overflow-hidden">
+              <motion.h1
+                custom={0}
+                variants={textReveal}
+                className="text-[14vw] md:text-[12vw] uppercase"
+              >
+                Design
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden flex items-baseline gap-4 md:gap-8">
+               <motion.h1
+                custom={1}
+                variants={textReveal}
+                className="text-[14vw] md:text-[12vw] uppercase text-neutral-500"
+              >
+                &
+              </motion.h1>
+               <motion.h1
+                custom={2}
+                variants={textReveal}
+                className="text-[14vw] md:text-[12vw] uppercase"
+              >
+                Code
+              </motion.h1>
+            </div>
+            <div className="overflow-hidden">
+               <motion.h1
+                custom={3}
+                variants={textReveal}
+                className="text-[14vw] md:text-[12vw] uppercase ml-[10vw] text-neutral-500"
+              >
+                Engineer
+              </motion.h1>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="mt-12 md:mt-24 max-w-xl ml-auto"
           >
-            Documentation
-          </a>
+             <p className="text-xl md:text-2xl font-medium text-neutral-400 leading-relaxed">
+              I build immersive digital experiences that blend aesthetic precision with technical robustness. Based in Seoul.
+            </p>
+          </motion.div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Just a spacer for now to allow scroll testing */}
+      <div className="h-screen w-full flex items-center justify-center text-neutral-800">
+        <span className="uppercase tracking-widest text-sm">Scroll to explore</span>
+      </div>
+
+      <Dock />
+    </main>
   );
 }
