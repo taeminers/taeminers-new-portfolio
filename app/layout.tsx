@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -27,6 +28,7 @@ export default function RootLayout({
           outfit.variable
         )}
       >
+        <CustomCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
