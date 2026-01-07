@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Personal Portfolio",
+  title: "Kyle Lee | Entrepreneur & SWE",
+  description: "Personal Portfolio for Taemin Kyle Lee",
 };
 
 export default function RootLayout({
