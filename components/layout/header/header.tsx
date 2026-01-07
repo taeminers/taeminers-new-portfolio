@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/core/button";
 import { MainCtaButton } from "@/components/ui/main-cta/main-cta-button";
 
 const INFO_ITEMS = [

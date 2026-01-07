@@ -181,9 +181,17 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-center"
           >
+            <div className="flex gap-2 items-center">
             <p className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
-              Design Engineer / Working Worldwide
+              Visionary
             </p>
+            <p className="text-[10px] font-light tracking-widest text-neutral-700 uppercase">
+              / 
+            </p>
+            <p className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
+          Working Worldwide
+            </p>
+            </div>
           </motion.div>
 
           {/* Back to Top Button */}

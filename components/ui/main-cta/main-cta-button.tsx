@@ -25,7 +25,7 @@ export const MainCtaButton = () => {
                         }
                     },
                     hover: { 
-                        x: -40, 
+                        x: -41, 
                         opacity: 1, 
                         rotate: -360,
                         transition: { 
