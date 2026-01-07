@@ -14,9 +14,11 @@ const socialLinks = [
 
 export function Footer() {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [mounted, setMounted] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -164,9 +166,11 @@ export function Footer() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex items-center gap-2"
           >
-            <span className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
-              {getTimezone()} {formatTime(currentTime)}
-            </span>
+            {mounted && (
+              <span className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
+                {getTimezone()} {formatTime(currentTime)}
+              </span>
+            )}
           </motion.div>
 
           {/* Professional Role */}
