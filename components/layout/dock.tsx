@@ -57,7 +57,7 @@ export function Dock() {
                                 <div className="p-2 rounded-lg bg-white/50 group-hover:bg-white transition-colors shadow-sm">
                                      <item.icon className="w-5 h-5 text-neutral-600 transition-colors" />
                                 </div>
-                                <span className="font-medium text-sm text-neutral-800">{item.name}</span>
+                                <span className="font-medium text-sm text-neutral-800" style={{ mixBlendMode: 'difference' }}>{item.name}</span>
                             </motion.div>
                         </Link>
                     ))}
@@ -83,9 +83,9 @@ export function Dock() {
                     />
                 </div>
                 <div className="flex flex-col overflow-hidden flex-1 min-w-0 pr-2">
-                    <span className="text-sm font-bold uppercase text-neutral-800 whitespace-nowrap">Kyle Lee</span>
+                    <span className="text-sm font-bold uppercase text-neutral-800 whitespace-nowrap" style={{ mixBlendMode: 'difference' }}>Kyle Lee</span>
                     <Marquee className="[--gap:0.5rem] w-full" duration={15}>
-                        <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider">Design Engineer • Creative Developer • </span>
+                        <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider" style={{ mixBlendMode: 'difference' }}>Design Engineer • Creative Developer • </span>
                     </Marquee>
                 </div>
              </div>

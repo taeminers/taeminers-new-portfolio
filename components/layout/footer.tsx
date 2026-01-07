@@ -16,6 +16,7 @@ export function Footer() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [mounted, setMounted] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -24,6 +25,13 @@ export function Footer() {
     }, 1000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  // Set video playback speed to 0.5x
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
   }, []);
 
   const scrollToTop = () => {
@@ -76,33 +84,25 @@ export function Footer() {
         transform: 'translateZ(0)', // Force GPU acceleration
       }}
     >
-      {/* Gradient Background with Glassmorphism */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-        {/* Animated Gradient Orbs */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.6, 0.4],
+      {/* Video Background with Strong Blur */}
+      <div className="absolute inset-0">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            filter: 'blur(40px)',
+            transform: 'scale(1.1)', // Scale up to hide blur edges
           }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-gradient-to-br from-blue-400/40 to-purple-400/40 blur-[120px] rounded-full"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.5, 0.7, 0.5],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-gradient-to-tl from-pink-400/40 to-orange-400/40 blur-[120px] rounded-full"
-        />
+        >
+          <source src="/videos/footer-video.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Additional overlay for more abstract feel */}
+        <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
       </div>
 
       {/* Content Container */}
@@ -120,7 +120,6 @@ export function Footer() {
           <h2
             className={cn(
               "text-6xl md:text-[10rem] lg:text-[14rem] font-bold tracking-tight text-center",
-              "bg-gradient-to-r from-neutral-700 via-neutral-900 to-neutral-700 bg-clip-text text-transparent"
             )}
           >
             Kyle Lee
@@ -167,7 +166,7 @@ export function Footer() {
             className="flex items-center gap-2"
           >
             {mounted && (
-              <span className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
+              <span className="text-xs md:text-sm font-medium text-black font-bold tracking-widest  uppercase">
                 {getTimezone()} {formatTime(currentTime)}
               </span>
             )}
@@ -182,13 +181,13 @@ export function Footer() {
             className="text-center"
           >
             <div className="flex gap-2 items-center">
-            <p className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
+            <p className="text-xs md:text-sm  tracking-widest text-black font-bold uppercase">
               Visionary
             </p>
-            <p className="text-[10px] font-light tracking-widest text-neutral-700 uppercase">
+            <p className="text-[10px] font-light tracking-widest text-black font-bold uppercase">
               / 
             </p>
-            <p className="text-xs md:text-sm font-medium tracking-widest text-neutral-700 uppercase">
+            <p className="text-xs md:text-sm  tracking-widest text-black font-bold uppercase">
           Working Worldwide
             </p>
             </div>
