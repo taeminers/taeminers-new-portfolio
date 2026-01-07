@@ -6,6 +6,7 @@ import { Home, Lightbulb, Mail, LayoutGrid, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Button } from "@/components/ui/core/button";
+import { Marquee } from "@/components/ui/marquee";
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
@@ -29,7 +30,7 @@ export function Dock() {
         "shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]",
         "ring-1 ring-white/30 ring-inset",
 
-        "w-[90vw] max-w-[350px] rounded-3xl", 
+        "w-[320px] md:w-3/5 md:max-w-4xl rounded-3xl", 
         "p-2"
       )}
       style={{
@@ -70,18 +71,29 @@ export function Dock() {
             layout="position" // Ensures this bar sticks to the bottom smoothly during expansion
             className="flex items-center justify-between w-full gap-4 px-2"
         >
-             <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-neutral-100 border border-white/50 shadow-inner" />
-                <div className="flex flex-col">
-                    <span className="text-sm font-bold uppercase text-neutral-800">Kyle Lee</span>
-                    <span className="text-sm font-semibold text-neutral-500 uppercase tracking-widest">이태민</span>
+             <div className="flex items-center gap-3 flex-1 min-w-0">
+                <div className="w-20 h-20 rounded-sm border border-white/50 shadow-inner overflow-hidden relative shrink-0">
+                    <video 
+                        src="/videos/kyle-hero-video.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover" 
+                    />
+                </div>
+                <div className="flex flex-col overflow-hidden flex-1 min-w-0 pr-2">
+                    <span className="text-sm font-bold uppercase text-neutral-800 whitespace-nowrap">Kyle Lee</span>
+                    <Marquee className="[--gap:0.5rem] w-full" duration={15}>
+                        <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider">Design Engineer • Creative Developer • </span>
+                    </Marquee>
                 </div>
              </div>
             
             <Button
                 variant="ghost"
                 size="icon"
-                className="rounded-full w-12 h-12 hover:bg-white/20 ml-auto"
+                className="rounded-full w-12 h-12 hover:bg-white/20 ml-auto shrink-0"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <AnimatePresence mode="wait" initial={false}>

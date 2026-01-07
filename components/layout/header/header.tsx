@@ -69,10 +69,10 @@ export function Header() {
         <div className="hidden md:flex items-start gap-20">
             <div className="flex flex-col gap-1">
             <span className="text-xs font-medium uppercase tracking-widest opacity-50">
-                Role
+                Building
             </span>
             <span className="text-sm font-bold uppercase tracking-widest">
-                Design Engineer
+                GRIDS
             </span>
             </div>
 
