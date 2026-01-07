@@ -72,7 +72,7 @@ export function Dock() {
             className="flex items-center justify-between w-full gap-4 px-2"
         >
              <div className="flex items-center gap-3 flex-1 min-w-0">
-                <div className="w-20 h-20 rounded-sm border border-white/50 shadow-inner overflow-hidden relative shrink-0">
+                <div className="w-20 h-20 rounded-lg border border-white/50 shadow-inner overflow-hidden relative shrink-0">
                     <video 
                         src="/videos/kyle-hero-video.mp4" 
                         autoPlay 

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "motion/react";
+import { Globe } from "@/components/ui/globe";
 
 const textReveal: Variants = {
   hidden: { y: 100, opacity: 0 },
@@ -17,14 +18,21 @@ const textReveal: Variants = {
 
 export function Hero() {
   return (
-    <section className="relative flex flex-col justify-center min-h-[100dvh] px-6 pt-32 pb-40 md:px-12">
-      <div className="max-w-[90rem] mx-auto w-full">
+    <section className="relative flex flex-col justify-center min-h-[100dvh] px-6 pt-32 pb-40 md:px-12 overflow-hidden">
+      {/* Globe Background - Behind everything */}
+      <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1 }}>
+        <div className="w-full max-w-[600px] ">
+          <Globe />
+        </div>
+      </div>
+
+      {/* Content Layer - In front */}
+      <div className="max-w-[90rem] mx-auto w-full relative" style={{ zIndex: 1 }}>
         <motion.div
           initial="hidden"
           animate="visible"
           className="flex flex-col font-heading font-bold tracking-tighter leading-[0.85]"
         >
-          {/* Massive Heading */}
           <div className="overflow-hidden">
             <motion.h1
               custom={0}
@@ -67,10 +75,8 @@ export function Hero() {
           transition={{ delay: 1, duration: 1 }}
           className="mt-12 md:mt-24 max-w-xl ml-auto"
         >
-          <p className="text-xl md:text-2xl font-medium text-neutral-400 leading-relaxed">
-            Creating experiences, beliefs, and dreams.
-          </p>
-          <div className="mt-4 flex  items-center gap-2 text-neutral-500">
+         
+          <div className="flex mt-[200px] md:mt-[150px] justify-end  items-center gap-2 text-neutral-500">
             <span className="text-xs text-black font-bold uppercase tracking-widest">Scroll for more</span>
             <svg 
               width="14" 

@@ -3,7 +3,6 @@
 import { Header } from "@/components/layout/header/header";
 import { Dock } from "@/components/layout/dock";
 import { Hero } from "@/components/sections/hero";
-import { World } from "@/components/sections/world";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       </div>
 
       <Hero />
-      <World />
       <Dock />
     </main>
   );
