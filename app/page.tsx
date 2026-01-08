@@ -3,6 +3,7 @@
 import { Header } from "@/components/layout/header/header";
 import { Dock } from "@/components/layout/dock";
 import { Hero } from "@/components/sections/hero";
+import { IntroSection } from "@/components/sections/intro-section";
 import { MockSection } from "@/components/sections/mock-section";
 import { Footer } from "@/components/layout/footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
         </div>
 
         <Hero />
+        <IntroSection />
         <MockSection />
         <Dock />
         <Footer />

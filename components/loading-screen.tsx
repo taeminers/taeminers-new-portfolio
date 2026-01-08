@@ -14,7 +14,7 @@ export function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
   const [showOne, setShowOne] = useState(false);
   const lockedDigitsRef = useRef(0); // Use ref to avoid re-render loops
 
-  const loadingDuration = 3500; // 3.5 seconds
+  const loadingDuration = 2500; // 2.5 seconds
 
   useEffect(() => {
     let startTime: number | null = null;
