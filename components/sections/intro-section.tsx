@@ -1,118 +1,210 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import Image from "next/image";
 
-const slides = [
-  {
-    id: 1,
-    title: "LOUIS PAILLE",
-    date: "2025-09-12",
-    developedBy: "DEVELOPED BY",
-    designedBy: "DESIGNED BY MICHAEL",
-    developer: "MICHAEL BARDOU",
-    developerRole: "DEVELOPED BY",
-    image: "/images/intro-1.jpg",
-  },
-  {
-    id: 2,
-    title: "DESIGN ENGINEER",
-    date: "2025-10-15",
-    developedBy: "DEVELOPED BY",
-    designedBy: "DESIGNED BY MICHAEL",
-    developer: "MICHAEL BARDOU",
-    developerRole: "DEVELOPED BY",
-    image: "/images/intro-2.jpg",
-  },
-  {
-    id: 3,
-    title: "CREATIVE STUDIO",
-    date: "2025-11-20",
-    developedBy: "DEVELOPED BY",
-    designedBy: "DESIGNED BY MICHAEL",
-    developer: "MICHAEL BARDOU",
-    developerRole: "DEVELOPED BY",
-    image: "/images/intro-3.jpg",
-  },
-];
-
 export function IntroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  // Animation variants for staggered text reveal
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  const wordVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
+      },
+    },
   };
 
-  const currentSlide = slides[currentIndex];
+  const descriptionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        delay: 0.8,
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 1.1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
+      },
+    },
+  };
+
+  // Split the heading into words for animation
+  const headingLine1 = ["I", "prioritize", "the"];
+  const headingLine2 = ["development", "of"];
+  const headingLine3 = ["market-driven", "solutions"];
+  const headingLine4 = ["that", "deliver", "clear"];
+  const headingLine5 = ["business", "value", "over"];
+  const headingLine6 = ["engineering", "purely"];
+  const headingLine7 = ["technical", "endeavors."];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-20 bg-white">
-      <div className="max-w-[1800px] mx-auto w-full">
-        <div className="relative flex items-center justify-center">
-       
-
-          {/* Center Content */}
-          <div className="flex flex-col items-center gap-6 mx-auto w-[300px] md:w-[600px]">
-            {/* Image Container */}
-            <div className="relative w-full aspect-video overflow-hidden rounded-lg">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide.id}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-                  className="absolute inset-0"
-                >
-                  {/* Placeholder gradient */}
-                  <div className="w-full h-full bg-gradient-to-br from-emerald-200 via-emerald-300 to-emerald-400" />
-                  {/* Uncomment when you have images:
-                  <Image
-                    src={currentSlide.image}
-                    alt={currentSlide.title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  */}
-                </motion.div>
-              </AnimatePresence>
+    <section className="relative min-h-screen px-6 lg:px-12 py-8 lg:py-20 bg-white">
+      <div className="max-w-[1600px] mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[600px_1fr] gap-6 lg:gap-16">
+          {/* Left Side - Sticky Image */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={imageVariants}
+            className="relative w-full max-w-[600px] mx-auto lg:mx-0 aspect-video overflow-hidden rounded-lg order-1 lg:sticky lg:top-24 lg:self-start"
+          >
+            {/* Placeholder gradient with red/orange tones */}
+            <div className="w-full h-full bg-gradient-to-br from-red-600 via-orange-600 to-red-700 relative">
+              {/* Optional: Add a subtle overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
+            {/* Uncomment when you have the actual image:
+            <Image
+              src="/images/intro-portrait.jpg"
+              alt="Portrait"
+              fill
+              className="object-cover"
+              priority
+            />
+            */}
+          </motion.div>
 
-            {/* Text Information */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-                className="w-full flex justify-between items-start text-xs uppercase tracking-wider"
-              >
-                <div className="flex flex-col gap-1">
-                  <h2 className="font-bold text-neutral-900">{currentSlide.title}</h2>
-                  <p className="text-neutral-500">{currentSlide.date}</p>
-                </div>
+          {/* Right Side - Text Content */}
+          <div className="flex flex-col justify-center order-2 lg:min-h-[120vh]">
+            {/* Main Heading - Animated word by word */}
+            <motion.h1
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={containerVariants}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light leading-[1.1] mb-8 lg:mb-12"
+            >
+              {/* Line 1 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4 mb-2">
+                {headingLine1.map((word, index) => (
+                  <motion.span
+                    key={`line1-${index}`}
+                    variants={wordVariants}
+                    className="text-black"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
 
-                <div className="flex flex-col gap-1 text-center">
-                  <p className="text-neutral-500">{currentSlide.developedBy}</p>
-                  <p className="text-neutral-500">{currentSlide.designedBy}</p>
-                </div>
+              {/* Line 2 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4 mb-2">
+                {headingLine2.map((word, index) => (
+                  <motion.span
+                    key={`line2-${index}`}
+                    variants={wordVariants}
+                    className="text-black"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
 
-                <div className="flex flex-col gap-1 text-right">
-                  <p className="font-bold text-neutral-900">{currentSlide.developer}</p>
-                  <p className="text-neutral-500">{currentSlide.developerRole}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              {/* Line 3 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4 mb-2">
+                {headingLine3.map((word, index) => (
+                  <motion.span
+                    key={`line3-${index}`}
+                    variants={wordVariants}
+                    className={word === "market-driven" ? "italic text-black" : "text-black"}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Line 4 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4 mb-2">
+                {headingLine4.map((word, index) => (
+                  <motion.span
+                    key={`line4-${index}`}
+                    variants={wordVariants}
+                    className="text-black"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Line 5 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4 mb-2">
+                {headingLine5.map((word, index) => (
+                  <motion.span
+                    key={`line5-${index}`}
+                    variants={wordVariants}
+                    className={word === "business" || word === "value" ? "text-emerald-600" : "text-black"}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Line 6 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4 mb-2">
+                {headingLine6.map((word, index) => (
+                  <motion.span
+                    key={`line6-${index}`}
+                    variants={wordVariants}
+                    className="text-black"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Line 7 */}
+              <div className="flex flex-wrap gap-x-3 lg:gap-x-4">
+                {headingLine7.map((word, index) => (
+                  <motion.span
+                    key={`line7-${index}`}
+                    variants={wordVariants}
+                    className={word === "technical" ? "italic text-black/60" : "text-black/60"}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.h1>
+
+            {/* Description Text - Animated */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={descriptionVariants}
+              className="max-w-md"
+            >
+              <p className="text-neutral-700 text-sm sm:text-base leading-relaxed">
+                My name is Artisan. I'm a passionate creative who works closely with companies to help them unlock their full potential and solve complex business problems with effective and memorable design solutions.
+              </p>
+            </motion.div>
           </div>
-
-        
         </div>
       </div>
     </section>
