@@ -6,6 +6,7 @@ import { Hero } from "@/components/sections/hero";
 import { IntroSection } from "@/components/sections/intro-section";
 import { MockSection } from "@/components/sections/mock-section";
 import { ProfileSection } from "@/components/sections/profile-section";
+import { WorkShowcase } from "@/components/sections/work-showcase";
 import { Footer } from "@/components/layout/footer";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
         <Hero />
         <IntroSection />
         <ProfileSection />
+        <WorkShowcase />
         <MockSection />
         <Dock />
         <Footer />
