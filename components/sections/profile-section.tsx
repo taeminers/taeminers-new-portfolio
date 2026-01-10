@@ -1,11 +1,22 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "motion/react";
-import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "motion/react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { BadgeCheck, X } from "lucide-react";
+
+interface ProfileCard {
+  id: string;
+  title: string;
+  subtitle: string;
+  bgColor: string;
+  image?: string;
+}
 
 export function ProfileSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedCard, setSelectedCard] = useState<ProfileCard | null>(null);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -43,6 +54,45 @@ export function ProfileSection() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
 
+  const profileCards: ProfileCard[] = [
+    {
+      id: "birthday",
+      title: "1998-09-14",
+      subtitle: "Birthday",
+      bgColor: "bg-gradient-to-br from-purple-400 to-purple-600",
+    },
+    {
+      id: "education",
+      title: "Seoul National University",
+      subtitle: "Computer Science & Engineering 17",
+      bgColor: "bg-gradient-to-br from-blue-400 to-blue-600",
+    },
+    {
+      id: "grids",
+      title: "GRIDS",
+      subtitle: "CEO",
+      bgColor: "bg-gradient-to-br from-green-400 to-green-600",
+    },
+    {
+      id: "lgcns",
+      title: "LG CNS Intern",
+      subtitle: "Mobile Service Development Team",
+      bgColor: "bg-gradient-to-br from-red-400 to-red-600",
+    },
+    {
+      id: "factblock",
+      title: "FACTBLOCK",
+      subtitle: "Frontend Developer",
+      bgColor: "bg-gradient-to-br from-yellow-400 to-yellow-600",
+    },
+    {
+      id: "vws",
+      title: "VWS",
+      subtitle: "Product Engineer (PM & SWE)",
+      bgColor: "bg-gradient-to-br from-pink-400 to-pink-600",
+    },
+  ];
+
   return (
     <section
       ref={containerRef}
@@ -50,34 +100,8 @@ export function ProfileSection() {
     >
       {/* Sticky container that holds the image and text */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center px-6 lg:px-12">
-        <div className="max-w-[1600px] w-full mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
-          {/* Profile info - left side */}
-          <motion.div
-            style={{
-              opacity: useTransform(scrollYProgress, [0.3, 0.5], [0, 1]),
-            }}
-            className="order-2 lg:order-1 lg:flex-shrink-0"
-          >
-            <div className="space-y-2 lg:space-y-4">
-              <h5 className="text-xs uppercase tracking-widest text-neutral-500">(PROFILE)</h5>
-              <h2 className="text-3xl lg:text-5xl font-light text-black">
-                Taemin 'Kyle' Lee
-              </h2>
-              <div className="flex flex-col gap-1 lg:gap-2 text-neutral-700">
-                 <p className="text-base lg:text-lg">
-                  1998-09-14
-                </p>
-                <p className="text-base lg:text-lg">
-                  Seoul National University
-                </p>
-                <p className="text-base lg:text-lg">
-                  Computer Science & Engineering 17
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Animated image container - right side */}
+        <div className="max-w-[1600px] w-full mx-auto flex flex-col lg:flex-row items-start justify-center md:gap-8">
+          {/* Animated image container - left side */}
           <motion.div
             style={{
               scale,
@@ -85,7 +109,7 @@ export function ProfileSection() {
               rotateY,
               transformPerspective: 1000,
             }}
-            className="relative w-full max-w-2xl lg:max-w-3xl h-[50vh] lg:h-[70vh] order-1 lg:order-2"
+            className="relative w-full max-w-2xl lg:max-w-3xl h-[50vh] lg:h-[70vh] order-1 lg:order-1"
         >
           <Image
             src="/images/taeminers.jpeg"
@@ -95,8 +119,88 @@ export function ProfileSection() {
             priority
           />
           </motion.div>
+
+          {/* Profile info - right side */}
+          <motion.div
+            style={{
+              opacity: useTransform(scrollYProgress, [0.3, 0.5], [0, 1]),
+            }}
+            className="order-2 lg:order-2 lg:flex-shrink-0 w-full lg:w-auto"
+          >
+            <div className="space-y-4 lg:space-y-6">
+              <div>
+                {/* <h5 className="text-xs uppercase tracking-widest text-neutral-500">(PROFILE)</h5> */}
+                <h2 className="text-3xl lg:text-5xl font-light text-black">
+                  Kyle Lee (이태민) <BadgeCheck className="inline text-white" size={32} fill="#1DA1F2" />
+                </h2>
+              </div>
+
+              {/* Instagram-style grid */}
+              <div className="grid grid-cols-3  gap-0.5 max-w-lg">
+                {profileCards.map((card, index) => (
+                  <motion.button
+                    key={card.id}
+                    onClick={() => setSelectedCard(card)}
+                    className={`${card.bgColor} aspect-[4/6] rounded-sm p-3 lg:p-4 flex flex-col justify-end text-left cursor-pointer hover:scale-101 transition-transform`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <p className="text-white font-bold text-xs lg:text-sm line-clamp-2">
+                      {card.title}
+                    </p>
+                    <p className="text-white/80 text-[10px] lg:text-xs line-clamp-1">
+                      {card.subtitle}
+                    </p>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedCard && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCard(null)}
+              className="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm"
+            />
+            
+            {/* Modal content */}
+            <motion.div
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl z-50 max-h-[80vh] overflow-y-auto"
+            >
+              {/* Modal header */}
+              <div className="sticky top-0 bg-white border-b border-neutral-200 px-6 py-4 flex justify-between items-center rounded-t-3xl">
+                <h3 className="text-xl font-semibold text-black">{selectedCard.title}</h3>
+                <button
+                  onClick={() => setSelectedCard(null)}
+                  className="p-2 hover:bg-neutral-100 rounded-full transition-colors"
+                >
+                  <X size={24} className="text-neutral-600" />
+                </button>
+              </div>
+
+              {/* Modal body - blank for now */}
+              <div className="p-6 min-h-[400px]">
+                <p className="text-neutral-600">{selectedCard.subtitle}</p>
+                {/* Content will go here */}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -201,7 +201,7 @@ export function IntroSection() {
               className="max-w-md"
             >
               <p className="text-neutral-700 text-sm sm:text-base leading-relaxed">
-                My name is Artisan. I'm a passionate creative who works closely with companies to help them unlock their full potential and solve complex business problems with effective and memorable design solutions.
+                (Intro)
               </p>
             </motion.div>
           </div>
