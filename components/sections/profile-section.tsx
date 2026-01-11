@@ -59,36 +59,42 @@ export function ProfileSection() {
       id: "birthday",
       title: "1998-09-14",
       subtitle: "Birthday",
+      image: "/images/taeminers.jpeg",
       bgColor: "bg-gradient-to-br from-purple-400 to-purple-600",
     },
     {
       id: "education",
       title: "Seoul National University",
       subtitle: "Computer Science & Engineering 17",
+      image: "/images/profile/snu-logo.png",
       bgColor: "bg-gradient-to-br from-blue-400 to-blue-600",
     },
     {
       id: "grids",
       title: "GRIDS",
       subtitle: "CEO",
+      image: "/images/profile/grids-logo.jpg",
       bgColor: "bg-gradient-to-br from-green-400 to-green-600",
     },
     {
       id: "lgcns",
       title: "LG CNS Intern",
       subtitle: "Mobile Service Development Team",
+        image: "/images/profile/lg-logo.png",
       bgColor: "bg-gradient-to-br from-red-400 to-red-600",
     },
     {
       id: "factblock",
       title: "FACTBLOCK",
       subtitle: "Frontend Developer",
+      image: "/images/profile/fb-logo.webp",
       bgColor: "bg-gradient-to-br from-yellow-400 to-yellow-600",
     },
     {
       id: "vws",
       title: "VWS",
       subtitle: "Product Engineer (PM & SWE)",
+      image: "/images/profile/vws-logo.jpeg",
       bgColor: "bg-gradient-to-br from-pink-400 to-pink-600",
     },
   ];
@@ -100,7 +106,7 @@ export function ProfileSection() {
     >
       {/* Sticky container that holds the image and text */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center px-6 lg:px-12">
-        <div className="max-w-[1600px] w-full mx-auto flex flex-col lg:flex-row items-start justify-center md:gap-8">
+        <div className="max-w-[1600px] w-full mx-auto flex flex-col lg:flex-row items-start justify-center ">
           {/* Animated image container - left side */}
           <motion.div
             style={{
@@ -109,8 +115,7 @@ export function ProfileSection() {
               rotateY,
               transformPerspective: 1000,
             }}
-            className="relative w-full max-w-2xl lg:max-w-3xl h-[50vh] lg:h-[70vh] order-1 lg:order-1"
-        >
+            className="relative w-full max-w-xl lg:max-w-2xl h-[50vh] lg:h-[70vh] order-1 lg:order-1">
           <Image
             src="/images/taeminers.jpeg"
             alt="Profile"
@@ -136,22 +141,38 @@ export function ProfileSection() {
               </div>
 
               {/* Instagram-style grid */}
-              <div className="grid grid-cols-3  gap-0.5 max-w-lg">
+              <div className="grid grid-cols-3  gap-0.5 max-w-lg lg:max-w-xl">
                 {profileCards.map((card, index) => (
                   <motion.button
                     key={card.id}
                     onClick={() => setSelectedCard(card)}
-                    className={`${card.bgColor} aspect-[4/6] rounded-sm p-3 lg:p-4 flex flex-col justify-end text-left cursor-pointer hover:scale-101 transition-transform`}
+                    className="bg-white aspect-[4/6] rounded-sm overflow-hidden relative cursor-pointer hover:scale-101 transition-transform"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <p className="text-white font-bold text-xs lg:text-sm line-clamp-2">
-                      {card.title}
-                    </p>
-                    <p className="text-white/80 text-[10px] lg:text-xs line-clamp-1">
-                      {card.subtitle}
-                    </p>
+                    {/* Background Image */}
+                    {card.image && (
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        className="object-contain"
+                      />
+                    )}
+                    
+                    {/* Gradient overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    
+                    {/* Text content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-3 lg:p-4 text-left">
+                      <p className="text-white font-bold text-xs lg:text-sm line-clamp-2">
+                        {card.title}
+                      </p>
+                      <p className="text-white/80 text-[10px] lg:text-xs line-clamp-1">
+                        {card.subtitle}
+                      </p>
+                    </div>
                   </motion.button>
                 ))}
               </div>
