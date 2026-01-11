@@ -30,7 +30,7 @@ export function Footer() {
   // Set video playback speed to 0.5x
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5;
+      videoRef.current.playbackRate = 1;
     }
   }, []);
 
@@ -94,11 +94,11 @@ export function Footer() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
           style={{
-            filter: 'blur(40px)',
-            transform: 'scale(1.1)', // Scale up to hide blur edges
+            filter: 'blur(40px) invert(100%)',
+            transform: 'scale(1.3)', // Scale up to hide blur edges
           }}
         >
-          <source src="/videos/footer-video.mp4" type="video/mp4" />
+          <source src="/videos/footer-video3.mp4" type="video/mp4" />
         </video>
         
         {/* Additional overlay for more abstract feel */}

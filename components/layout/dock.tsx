@@ -85,7 +85,7 @@ export function Dock() {
                 <div className="flex flex-col overflow-hidden flex-1 min-w-0 pr-2">
                     <span className="text-sm font-bold uppercase text-neutral-800 whitespace-nowrap" style={{ mixBlendMode: 'difference' }}>Kyle Lee</span>
                     <Marquee className="[--gap:0.5rem] w-full" duration={15}>
-                        <span className="text-xs font-medium text-neutral-500 uppercase tracking-wider" style={{ mixBlendMode: 'difference' }}>Product Engineer • Creative Entrepreneur• </span>
+                        <span className="text-xs font-medium text-black uppercase tracking-wider" style={{ mixBlendMode: 'difference' }}>Product Engineer • Creative Entrepreneur• </span>
                     </Marquee>
                 </div>
              </div>
