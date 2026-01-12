@@ -44,10 +44,10 @@ export function SkillsSection() {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 bg-gradient-to-r from-neutral-700 via-neutral-900 to-neutral-700 bg-clip-text text-transparent">
-            Skills
+            Skill Set
           </h2>
           <p className="text-sm md:text-base text-neutral-600">
-            Technologies and tools I work with
+            Specializing in, but not limited to 
           </p>
         </motion.div>
 
@@ -81,7 +81,7 @@ export function SkillsSection() {
                       stiffness: 300,
                       damping: 50
                     }}
-                  />
+                  />//////////
                 )}
 
                 {/* Content */}
