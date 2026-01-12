@@ -11,7 +11,8 @@ import {
   SiJira,
   SiSlack,
   SiNotion,
-  SiFigma
+  SiFigma,
+  SiRedux
 } from "react-icons/si";
 
 const skills = [
@@ -19,7 +20,7 @@ const skills = [
   { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
   { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
   { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
-  { name: "Zustand", icon: null, color: "#443E38" },
+  { name: "Redux", icon: SiRedux, color: "#443E38" },
   { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
   { name: "Jira", icon: SiJira, color: "#0052CC" },
   { name: "Slack", icon: SiSlack, color: "#4A154B" },
@@ -77,8 +78,8 @@ export function SkillsSection() {
                     style={{ backgroundColor: "#000000" }}
                     transition={{
                       type: "spring",
-                      stiffness: 500,
-                      damping: 40
+                      stiffness: 300,
+                      damping: 50
                     }}
                   />
                 )}

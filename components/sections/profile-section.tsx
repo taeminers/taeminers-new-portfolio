@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "motion/react";
-import { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { BadgeCheck, X } from "lucide-react";
 
@@ -24,35 +24,6 @@ export function ProfileSection() {
 
   // Zoom effect: scale from 0.5 to 1 as we scroll
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 1]);
-  
-  // Mouse movement tracking
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  // Smooth spring animation for mouse movement
-  const springConfig = { damping: 25, stiffness: 150 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      
-      const rect = containerRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      // Normalize mouse position to -0.5 to 0.5
-      const x = (e.clientX - centerX) / rect.width;
-      const y = (e.clientY - centerY) / rect.height;
-      
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
 
   const profileCards: ProfileCard[] = [
     {
@@ -111,9 +82,6 @@ export function ProfileSection() {
           <motion.div
             style={{
               scale,
-              rotateX,
-              rotateY,
-              transformPerspective: 1000,
             }}
             className="relative w-full max-w-xl lg:max-w-2xl h-[50vh] lg:h-[70vh] order-1 lg:order-1">
           <Image

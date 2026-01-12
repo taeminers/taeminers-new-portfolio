@@ -72,22 +72,19 @@ export function IntroSection() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={imageVariants}
-            className="relative w-full max-w-[600px] mx-auto lg:mx-0 aspect-video overflow-hidden rounded-lg order-1 lg:sticky lg:top-24 lg:self-start"
+            className="relative w-full max-w-[600px] mx-auto lg:mx-0 order-1 lg:sticky lg:top-24 lg:self-start"
           >
-            {/* Placeholder gradient with red/orange tones */}
-            <div className="w-full h-full bg-gradient-to-br from-red-600 via-orange-600 to-red-700 relative">
-              {/* Optional: Add a subtle overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="aspect-video overflow-hidden rounded-lg">
+              <video
+                src="/videos/hero-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
             </div>
-            {/* Uncomment when you have the actual image:
-            <Image
-              src="/images/intro-portrait.jpg"
-              alt="Portrait"
-              fill
-              className="object-cover"
-              priority
-            />
-            */}
+            <p className="text-xs text-neutral-500 mt-2 italic text-right">my current mood:</p>
           </motion.div>
 
           {/* Right Side - Text Content */}
