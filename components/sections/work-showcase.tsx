@@ -40,6 +40,7 @@ function WorkCard({ title, icon, coverImage, videoSrc, category, year, tags, hre
 
   return (
     <Link
+      target="_blank"
       href={href}
       ref={cardRef}
       className="flex flex-col gap-4 lg:gap-5 px-3 lg:px-4 pt-3 lg:pt-4 pb-5 lg:pb-6 rounded-xl lg:rounded-2xl bg-neutral-900 cursor-pointer group relative"
@@ -108,24 +109,28 @@ function WorkCard({ title, icon, coverImage, videoSrc, category, year, tags, hre
           <div className="absolute left-0 h-full w-8 lg:w-10 bg-gradient-to-r from-neutral-900/95 to-neutral-900/0 z-10" />
           <div className="absolute right-0 h-full w-8 lg:w-10 bg-gradient-to-l from-neutral-900/95 to-neutral-900/0 z-10" />
           <div className="flex overflow-hidden">
-            <motion.p
-              className="text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
+            <motion.div
+              className="flex whitespace-nowrap"
               animate={{ x: [0, -1000] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              transition={{ 
+                duration: 20, 
+                repeat: Infinity, 
+                repeatType: "loop",
+                ease: "linear" 
+              }}
             >
-              {tags.map((tag, i) => (
-                <span key={i}>{tag}, </span>
+              {/* Repeat tags multiple times for seamless loop */}
+              {[...Array(10)].map((_, repeatIndex) => (
+                <p
+                  key={repeatIndex}
+                  className="text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
+                >
+                  {tags.map((tag, i) => (
+                    <span key={i}>{tag}, </span>
+                  ))}
+                </p>
               ))}
-            </motion.p>
-            <motion.p
-              className="text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
-              animate={{ x: [0, -1000] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              {tags.map((tag, i) => (
-                <span key={i}>{tag}, </span>
-              ))}
-            </motion.p>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -157,14 +162,14 @@ export function WorkShowcase() {
       href: "/work/trackstack",
     },
     {
-      title: "Project Two",
-      icon: "/images/work/trackstack/trackstack-icon.png",
-      coverImage: "/images/work/trackstack/cover.jpg",
+      title: "The Clear Labs",
+      icon: "/images/theclearlabs.png",
+      coverImage: "/images/theclearlabs.png",
       videoSrc: "/videos/work/tcl-ad.mp4",
-      category: "Design",
-      year: "2024",
-      tags: ["Brand Design", "UI/UX", "Web Development", "Strategy"],
-      href: "/work/project-two",
+      category: "e-commerce",
+      year: "2025",
+      tags: ["K-beauty", "cosmetics", "shopify", "commerce"],
+      href: "https://theclearlabs.com/",
     },
   ];
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
+import Image from "next/image";
 import { 
   SiReact, 
   SiNextdotjs, 
@@ -11,8 +12,7 @@ import {
   SiJira,
   SiSlack,
   SiNotion,
-  SiFigma,
-  SiRedux
+  SiFigma
 } from "react-icons/si";
 
 const skills = [
@@ -20,7 +20,7 @@ const skills = [
   { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
   { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
   { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
-  { name: "Redux", icon: SiRedux, color: "#443E38" },
+  { name: "Zustand", imagePath: "/images/zustand.webp", color: "#443E38" },
   { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
   { name: "Jira", icon: SiJira, color: "#0052CC" },
   { name: "Slack", icon: SiSlack, color: "#4A154B" },
@@ -91,16 +91,16 @@ export function SkillsSection() {
                       className="w-12 h-12 md:w-16 md:h-16 transition-colors duration-300" 
                       style={{ color: hoveredIndex === index ? "#ffffff" : skill.color }} 
                     />
-                  ) : (
-                    <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
-                      <span 
-                        className="text-2xl md:text-3xl font-bold transition-colors duration-300" 
-                        style={{ color: hoveredIndex === index ? "#ffffff" : skill.color }}
-                      >
-                        Z
-                      </span>
+                  ) : skill.imagePath ? (
+                    <div className="w-12 h-12 md:w-16 md:h-16 relative">
+                      <Image
+                        src={skill.imagePath}
+                        alt={skill.name}
+                        fill
+                        className="object-contain"
+                      />
                     </div>
-                  )}
+                  ) : null}
                   <span 
                     className={`text-sm md:text-base font-medium text-center transition-colors duration-300 ${
                       hoveredIndex === index ? "text-white" : "text-neutral-700"
