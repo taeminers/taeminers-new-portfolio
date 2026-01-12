@@ -4,8 +4,9 @@ import { Header } from "@/components/layout/header/header";
 import { Dock } from "@/components/layout/dock";
 import { Hero } from "@/components/sections/hero";
 import { IntroSection } from "@/components/sections/intro-section";
-import { MockSection } from "@/components/sections/mock-section";
+import { SkillsSection } from "@/components/sections/skills-section";
 import { ProfileSection } from "@/components/sections/profile-section";
+import { TransitionSection } from "@/components/sections/transition-section";
 import { WorkShowcase } from "@/components/sections/work-showcase";
 import { Footer } from "@/components/layout/footer";
 
@@ -25,7 +26,8 @@ export default function Home() {
         <IntroSection />
         <ProfileSection />
         <WorkShowcase />
-        <MockSection />
+        <SkillsSection />
+        <TransitionSection />
         <Dock />
         <Footer />
       </main>
