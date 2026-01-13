@@ -9,7 +9,7 @@ interface WorkCardProps {
   title: string;
   icon: string;
   coverImage: string;
-  videoSrc: string;
+  videoSrc?: string;
   category: string;
   year: string;
   tags: string[];
@@ -50,16 +50,28 @@ function WorkCard({ title, icon, coverImage, videoSrc, category, year, tags, hre
         {/* Blur Overlay */}
         <div className="absolute inset-0 bg-neutral-900/30 backdrop-blur-md z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
 
-        {/* Video Preview */}
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          className="absolute inset-0 w-full h-full object-cover z-20"
-          loop
-          playsInline
-          muted
-          autoPlay
-        />
+        {/* Video Preview or Cover Image */}
+        {videoSrc ? (
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            className="absolute inset-0 w-full h-full object-cover z-20"
+            loop
+            playsInline
+            muted
+            autoPlay
+          />
+        ) : (
+          <div className="absolute inset-0 w-full h-full z-20">
+            <Image
+              alt={title}
+              src={coverImage}
+              fill
+              className="object-cover scale-100 group-hover:scale-110 transition-transform duration-500 ease-in-out"
+              sizes="100vw"
+            />
+          </div>
+        )}
 
         {/* Background Image */}
         <div className="w-full h-full">
@@ -140,28 +152,7 @@ function WorkCard({ title, icon, coverImage, videoSrc, category, year, tags, hre
 
 export function WorkShowcase() {
   const works = [
-    {
-      title: "Trackstack",
-      icon: "/images/work/trackstack/trackstack-icon.png",
-      coverImage: "/images/work/trackstack/cover.jpg",
-      videoSrc: "/videos/work/fire-ad.mp4",
-      category: "Product",
-      year: "2025",
-      tags: [
-        "Art Direction",
-        "Naming & Copywriting",
-        "Voice & Tone",
-        "Brand Design",
-        "Strategy",
-        "UX",
-        "UI",
-        "Web Design",
-        "Product Design",
-        "Media Production",
-      ],
-      href: "/work/trackstack",
-    },
-    {
+      {
       title: "The Clear Labs",
       icon: "/images/theclearlabs.png",
       coverImage: "/images/theclearlabs.png",
@@ -171,6 +162,20 @@ export function WorkShowcase() {
       tags: ["K-beauty", "cosmetics", "shopify", "commerce"],
       href: "https://theclearlabs.com/",
     },
+    {
+      title: "FABLO APP",
+      icon: "/images/profile/fablo-logo.png",
+      coverImage: "/images/fablo-app.png",
+      category: "Product",
+      year: "2025",
+      tags: [
+       "Mobile App",
+       "Play to Earn",
+       "647,789 users",
+      ],
+      href: "https://www.playfablo.com/",
+    },
+
   ];
 
   return (
@@ -187,10 +192,10 @@ export function WorkShowcase() {
             </h2>
           </div>
           <Link
-            href="/work"
+            href="/"
             className="text-sm lg:text-base uppercase tracking-wider text-black hover:text-neutral-600 transition-colors font-semibold group flex items-center gap-2"
           >
-            See all
+            More coming soon
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>

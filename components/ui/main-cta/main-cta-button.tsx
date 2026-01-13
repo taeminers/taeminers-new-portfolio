@@ -44,6 +44,9 @@ export const MainCtaButton = () => {
             <Button 
                 className="rounded-full bg-neutral-900 text-white hover:bg-neutral-800 text-[20px] relative z-20 shadow-sm border border-white/10"
                 size="lg"
+                onClick={() => {
+                
+                }}
             >
                 Let&apos;s Talk
             </Button>

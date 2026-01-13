@@ -98,7 +98,7 @@ function ProfileCard({ card, index }: { card: ProfileCard; index: number }) {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-2xl"
         >
-          <p className="text-base md:text-md text-white leading-relaxed">
+          <p className="text-base font-bold md:text-md text-white leading-relaxed">
             {card.description}
           </p>
         </motion.div>
@@ -115,7 +115,7 @@ export function ProfileSection() {
       subtitle: "Born September 14, 1998",
       description: "A journey that started in Seoul, Korea",
       category: "About Me",
-      image: "/images/startup.jpg",
+      image: "/images/kyle-lee.jpg",
     },
     {
       id: "education",
@@ -132,7 +132,7 @@ export function ProfileSection() {
       subtitle: "CEO & Co-Founder",
       description: "Leading a team to revolutionize digital experiences",
       category: "2022/03 - 2023/03",
-      image: "/images/startup.jpg",
+      image: "/images/grids.jpg",
 
     },
     {

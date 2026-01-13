@@ -8,8 +8,8 @@ import { useEffect, useState, useRef } from "react";
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/taeminers", icon: Github },
   { name: "LinkedIn", href: "https://linkedin.com/in/taeminers", icon: Linkedin },
-  { name: "Twitter", href: "https://twitter.com/taeminers", icon: Twitter },
-  { name: "Email", href: "mailto:hello@taeminers.com", icon: Mail },
+  { name: "Twitter", href: "https://twitter.com/pohrange", icon: Twitter },
+  { name: "Email", href: "mailto:taeminers@gmail.com", icon: Mail },
 ];
 
 export function Footer() {
