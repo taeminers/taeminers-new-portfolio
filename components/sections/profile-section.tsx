@@ -115,7 +115,7 @@ export function ProfileSection() {
       subtitle: "Born September 14, 1998",
       description: "A journey that started in Seoul, Korea",
       category: "About Me",
-      image: "/images/kyle-lee.jpg",
+      image: "/images/kyle.jpg",
     },
     {
       id: "education",
