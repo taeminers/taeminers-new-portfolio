@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, animate } from "motion/react";
 import { ArrowUp, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState, useRef } from "react";
+import { useLenis } from "lenis/react";
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/taeminers", icon: Github },
@@ -34,32 +35,10 @@ export function Footer() {
     }
   }, []);
 
+  const lenis = useLenis();
+
   const scrollToTop = () => {
-    const startPosition = window.scrollY;
-    const duration = 1200; // milliseconds
-    let startTime: number | null = null;
-
-    // Easing function for smooth animation
-    const easeInOutCubic = (t: number): number => {
-      return t < 0.5 
-        ? 4 * t * t * t 
-        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
-
-    const animation = (currentTime: number) => {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-      
-      window.scrollTo(0, startPosition * (1 - ease));
-
-      if (progress < 1) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
+    lenis?.scrollTo(0, { duration: 1.5, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
   };
 
   const formatTime = (date: Date) => {
