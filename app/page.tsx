@@ -28,7 +28,7 @@ export default function Home() {
         <WorkShowcase />
         <SkillsSection />
         <TransitionSection />
-        <Dock />
+        {/* <Dock /> */}
         <Footer />
       </main>
     </>

@@ -104,7 +104,7 @@ export function Hero() {
               variants={textReveal}
               className="text-[7vw] md:text-[7vw] uppercase mix-blend-difference"
             >
-              Entrepreneur
+              AI Creator
             </motion.h1>
           </div>
           <div className="overflow-hidden flex items-baseline gap-4 md:gap-8 justify-center">
