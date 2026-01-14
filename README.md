@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Taeminers Portfolio
 
-## Getting Started
+A modern, high-performance portfolio website built with **Next.js 16**, **React 19**, and **Tailwind CSS 4**. This project showcases advanced UI interactions using **GSAP**, **Motion**, and **WebGL** elements.
 
-First, run the development server:
+## ⚡ Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework:** [Next.js 16 (App Router)](https://nextjs.org/)
+- **UI Library:** [React 19](https://react.dev/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations:**
+  - [Motion](https://motion.dev/)
+  - [GSAP](https://gsap.com/)
+- **Smooth Scrolling:** [Lenis](https://lenis.studio/)
+- **3D Elements:** [Cobe](https://github.com/shuding/cobe)
+- **Icons:** [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Modern Architecture:** Built on the bleeding edge of React and Next.js.
+- **Smooth Scrolling:** Integrated Lenis for a premium scroll experience.
+- **Interactive 3D Globe:** Lightweight WebGL globe using Cobe.
+- **Advanced Animations:** Rich, fluid interactions powered by GSAP and Motion.
+- **Responsive Design:** Fully responsive layouts tailored for all devices.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/taeminers/taeminers-portfolio.git
+   cd taeminers-portfolio
+   ```
 
-## Deploy on Vercel
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   # or
+   bun install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📜 Scripts
+
+- `npm run dev`: Runs the development server.
+- `npm run build`: Builds the application for production.
+- `npm run start`: Starts the production server.
+- `npm run lint`: Runs ESLint to catch code quality issues.
