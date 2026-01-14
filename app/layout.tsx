@@ -35,6 +35,9 @@ export default function RootLayout({
       <head>
         <title>Kyle Lee | Entrepreneur & SWE</title>
         <meta name="description" content="Personal Portfolio for Taemin Kyle Lee" />
+        <meta property="og:title" content="Kyle Lee | Entrepreneur & SWE" />
+        <meta property="og:description" content="Personal Portfolio for Taemin Kyle Lee" />
+        <meta property="og:image" content="/images/opengraph.jpeg" />
       </head>
       <body
         className={cn(
